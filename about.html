@@ -45,7 +45,27 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 </style>
-</head><body><header class="site-header"><nav class="nav-wrap" aria-label="Main navigation"><a class="brand" href="index.html">CHRIS<span>.</span></a><div class="nav-right"><div class="links"><a href="index.html">Home</a><a href="about.html" aria-current="page">About</a><a href="interests.html">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">☼ Dark</button></div></nav></header><main class="wrap inner-page">
+
+<style id="chris-hamburger-menu">
+.nav-wrap{position:relative;display:flex!important;align-items:center;justify-content:space-between;min-height:76px;padding:12px 0;gap:16px}
+.nav-right{display:flex!important;align-items:center;gap:12px}
+.nav-toggle{width:44px;height:44px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.07);color:var(--text);cursor:pointer;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .2s ease,transform .2s ease,border-color .2s ease}
+.nav-toggle:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.nav-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .25s ease,opacity .2s ease}
+.nav-wrap.menu-open .nav-toggle span:first-child{transform:translateY(7px) rotate(45deg)}
+.nav-wrap.menu-open .nav-toggle span:nth-child(2){opacity:0}
+.nav-wrap.menu-open .nav-toggle span:last-child{transform:translateY(-7px) rotate(-45deg)}
+.nav-wrap .links{display:none!important;position:absolute;top:calc(100% + 9px);right:0;z-index:30;width:min(270px,calc(100vw - 30px));padding:10px;flex-direction:column;align-items:stretch;gap:5px;white-space:normal;overflow:visible;border:1px solid var(--line);border-radius:20px;background:rgba(12,23,42,.94);box-shadow:0 18px 50px rgba(0,0,0,.25);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.nav-wrap.menu-open .links{display:flex!important}
+.nav-wrap .links a{display:block;width:100%;padding:12px 14px;border:1px solid transparent;border-radius:12px;font-size:.9rem}
+.nav-wrap .links a:hover,.nav-wrap .links a[aria-current=page]{background:rgba(255,255,255,.11);border-color:var(--line)}
+.light-theme .nav-wrap .links{background:rgba(244,249,255,.96);box-shadow:0 18px 50px rgba(45,75,110,.16)}
+.light-theme .nav-wrap .links a:hover,.light-theme .nav-wrap .links a[aria-current=page]{background:rgba(70,120,160,.12)}
+@media(max-width:420px){.nav-wrap{min-height:0;padding:12px 0}.nav-right{gap:9px}.nav-toggle{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.nav-toggle,.nav-toggle span{transition:none!important}}
+</style>
+
+</head><body><header class="site-header"><nav class="nav-wrap" aria-label="Main navigation"><a class="brand" href="index.html">CHRIS<span>.</span></a><div class="nav-right"><button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button><div class="links" id="site-navigation"><a href="index.html">Home</a><a href="about.html" aria-current="page">About</a><a href="interests.html">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">☼ Dark</button></div></nav></header><main class="wrap inner-page">
 <section class="page-intro"><span class="kicker"><i></i> 01 — THE PERSON</span><h1>A little more<br><em>about me.</em></h1><p class="lead">I’m Chris, a Grade 12 student who enjoys learning, exploring new ideas, and finding ways to turn curiosity into something practical.</p></section>
 <section class="about-layout"><article class="glass story-card"><span class="mini-label">MY STORY</span><h2>Still learning.<br><em>Always becoming.</em></h2><p>I believe learning is a continuous process. Every lesson, challenge, and new experience gives me an opportunity to understand something better and improve step by step.</p><p>I’m interested in technology and the ways digital tools help people communicate, create, and solve problems. Building this portfolio lets me practice those ideas while sharing a little about who I am.</p><p>I try to stay open-minded, do my best in my studies, and become more confident when facing something unfamiliar.</p></article><aside class="glass profile-facts"><span class="mini-label">AT A GLANCE</span><div class="fact-row"><span>01</span><div><small>NAME</small><b>Chris</b></div></div><div class="fact-row"><span>02</span><div><small>LEVEL</small><b>Grade 12 · Senior High School</b></div></div><div class="fact-row"><span>03</span><div><small>FOCUS</small><b>Learning &amp; digital creativity</b></div></div><div class="fact-row"><span>04</span><div><small>THIS PORTFOLIO</small><b>HTML · CSS · GitHub Pages</b></div></div></aside></section>
 <section class="quote-band"><span>“</span><p>Small steps still move you forward. What matters is being willing to take the next one.</p></section><div class="page-next"><span>UP NEXT</span><a href="interests.html">What I’m interested in ↗</a></div></main><footer class="site-footer"><div class="footer-inner"><span>© 2026 CHRIS. · Student portfolio</span><span>Made with curiosity &amp; HTML/CSS</span></div></footer><script>(function(){const b=document.querySelector('.theme-toggle');if(!b)return;function setTheme(light){document.body.classList.toggle('light-theme',light);b.textContent=light?'☾ Dark':'☼ Light';b.setAttribute('aria-pressed',String(light));}let light=false;try{light=localStorage.getItem('chris-theme')==='light';}catch(e){}setTheme(light);b.addEventListener('click',function(){light=!light;setTheme(light);try{localStorage.setItem('chris-theme',light?'light':'dark');}catch(e){}});})();</script>
@@ -85,4 +105,19 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
   }), { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
   candidates.forEach(el => { if (el.classList.contains('motion-reveal')) observer.observe(el); });
   window.addEventListener('load', () => { if (hero) hero.classList.add('is-visible'); if (visual) visual.classList.add('is-visible'); }, { once: true });
-})();</script></body></html>
+})();</script>
+<script id="chris-hamburger-script">
+(function(){
+ const nav=document.querySelector('.nav-wrap');
+ const toggle=document.querySelector('.nav-toggle');
+ const links=nav&&nav.querySelector('.links');
+ if(!nav||!toggle||!links)return;
+ function closeMenu(){nav.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation menu');}
+ toggle.addEventListener('click',function(){const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');});
+ links.addEventListener('click',function(event){if(event.target.closest('a'))closeMenu();});
+ document.addEventListener('click',function(event){if(!nav.contains(event.target))closeMenu();});
+ document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeMenu();toggle.focus();}});
+})();
+</script>
+
+</body></html>
