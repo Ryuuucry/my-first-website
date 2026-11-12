@@ -42,7 +42,27 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
 @keyframes chrisHeaderIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important; } }
 </style>
-</head><body><header class="site-header"><nav class="nav-wrap" aria-label="Main navigation"><a class="brand" href="index.html">CHRIS<span>.</span></a><div class="nav-right"><div class="links"><a href="index.html">Home</a><a href="about.html">About</a><a href="interests.html" aria-current="page">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">☼ Dark</button></div></nav></header><main class="wrap inner-page">
+
+<style id="chris-hamburger-menu">
+.nav-wrap{position:relative;display:flex!important;align-items:center;justify-content:space-between;min-height:76px;padding:12px 0;gap:16px}
+.nav-right{display:flex!important;align-items:center;gap:12px}
+.nav-toggle{width:44px;height:44px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.07);color:var(--text);cursor:pointer;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .2s ease,transform .2s ease,border-color .2s ease}
+.nav-toggle:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.nav-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .25s ease,opacity .2s ease}
+.nav-wrap.menu-open .nav-toggle span:first-child{transform:translateY(7px) rotate(45deg)}
+.nav-wrap.menu-open .nav-toggle span:nth-child(2){opacity:0}
+.nav-wrap.menu-open .nav-toggle span:last-child{transform:translateY(-7px) rotate(-45deg)}
+.nav-wrap .links{display:none!important;position:absolute;top:calc(100% + 9px);right:0;z-index:30;width:min(270px,calc(100vw - 30px));padding:10px;flex-direction:column;align-items:stretch;gap:5px;white-space:normal;overflow:visible;border:1px solid var(--line);border-radius:20px;background:rgba(12,23,42,.94);box-shadow:0 18px 50px rgba(0,0,0,.25);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.nav-wrap.menu-open .links{display:flex!important}
+.nav-wrap .links a{display:block;width:100%;padding:12px 14px;border:1px solid transparent;border-radius:12px;font-size:.9rem}
+.nav-wrap .links a:hover,.nav-wrap .links a[aria-current=page]{background:rgba(255,255,255,.11);border-color:var(--line)}
+.light-theme .nav-wrap .links{background:rgba(244,249,255,.96);box-shadow:0 18px 50px rgba(45,75,110,.16)}
+.light-theme .nav-wrap .links a:hover,.light-theme .nav-wrap .links a[aria-current=page]{background:rgba(70,120,160,.12)}
+@media(max-width:420px){.nav-wrap{min-height:0;padding:12px 0}.nav-right{gap:9px}.nav-toggle{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.nav-toggle,.nav-toggle span{transition:none!important}}
+</style>
+
+</head><body><header class="site-header"><nav class="nav-wrap" aria-label="Main navigation"><a class="brand" href="index.html">CHRIS<span>.</span></a><div class="nav-right"><button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button><div class="links" id="site-navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="interests.html" aria-current="page">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">☼ Dark</button></div></nav></header><main class="wrap inner-page">
 <section class="page-intro"><span class="kicker"><i></i> 02 — CURIOSITY</span><h1>What I love<br><em>to explore.</em></h1><p class="lead">These interests give me room to experiment, develop new skills, and discover what I’m capable of creating.</p></section>
 <section class="interest-grid"><article class="interest-card glass"><div class="interest-top"><span>01 / DIGITAL WORLD</span><b>⌘</b></div><h2>Technology<br>&amp; ICT</h2><p>I enjoy exploring digital tools, computer systems, and the ways technology can make everyday tasks easier.</p><div class="tags"><span>Digital skills</span><span>Problem-solving</span></div></article><article class="interest-card glass"><div class="interest-top"><span>02 / VISUAL THINKING</span><b>✳</b></div><h2>Creativity<br>&amp; Design</h2><p>Colors, layouts, and visual ideas interest me because thoughtful design can make information easier to understand.</p><div class="tags"><span>Visual ideas</span><span>Design</span></div></article><article class="interest-card glass"><div class="interest-top"><span>03 / THE PROCESS</span><b>↗</b></div><h2>Personal<br>Growth</h2><p>I want to keep improving my patience, communication, confidence, and ability to work through challenges.</p><div class="tags"><span>Learning</span><span>Improvement</span></div></article><article class="interest-card glass"><div class="interest-top"><span>04 / MAKING THINGS</span><b>◎</b></div><h2>Creating<br>Projects</h2><p>Turning an idea into a real project helps me practice what I’ve learned and understand where I can improve.</p><div class="tags"><span>Practice</span><span>Building</span></div></article></section>
 <section class="closing glass compact"><div><span class="mini-label">A THOUGHT TO KEEP</span><h2>Curiosity is a good<br><em>place to begin.</em></h2><p>I’m excited to see where these interests lead as I continue learning.</p></div><a class="button solid" href="journey.html">See my journey ↗</a></section></main><footer class="site-footer"><div class="footer-inner"><span>© 2026 CHRIS. · Student portfolio</span><span>Made with curiosity &amp; HTML/CSS</span></div></footer><script>(function(){const b=document.querySelector('.theme-toggle');if(!b)return;function setTheme(light){document.body.classList.toggle('light-theme',light);b.textContent=light?'☾ Dark':'☼ Light';b.setAttribute('aria-pressed',String(light));}let light=false;try{light=localStorage.getItem('chris-theme')==='light';}catch(e){}setTheme(light);b.addEventListener('click',function(){light=!light;setTheme(light);try{localStorage.setItem('chris-theme',light?'light':'dark');}catch(e){}});})();</script>
@@ -69,4 +89,19 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}}),{threshold:.12,rootMargin:'0px 0px -36px 0px'});
  candidates.forEach(el=>{if(el.classList.contains('motion-reveal'))observer.observe(el);});
  window.addEventListener('load',()=>{if(hero)hero.classList.add('is-visible');if(visual)visual.classList.add('is-visible');},{once:true});
-})();</script></body></html>
+})();</script>
+<script id="chris-hamburger-script">
+(function(){
+ const nav=document.querySelector('.nav-wrap');
+ const toggle=document.querySelector('.nav-toggle');
+ const links=nav&&nav.querySelector('.links');
+ if(!nav||!toggle||!links)return;
+ function closeMenu(){nav.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation menu');}
+ toggle.addEventListener('click',function(){const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');});
+ links.addEventListener('click',function(event){if(event.target.closest('a'))closeMenu();});
+ document.addEventListener('click',function(event){if(!nav.contains(event.target))closeMenu();});
+ document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeMenu();toggle.focus();}});
+})();
+</script>
+
+</body></html>
