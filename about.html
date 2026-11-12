@@ -23,6 +23,28 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
 @media(hover:hover){.profile-photo{transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease}.profile-photo:hover{transform:scale(1.035) rotate(-1deg);filter:saturate(1.08)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important;filter:none!important}}
 </style>
+
+<style id="chris-motion-styles">
+/* Glassmorphism motion system */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .motion-ready .motion-reveal { opacity: 0; transform: translateY(22px) scale(.985); transition: opacity .72s cubic-bezier(.2,.7,.2,1), transform .72s cubic-bezier(.2,.7,.2,1); transition-delay: var(--motion-delay, 0ms); }
+  .motion-ready .motion-reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+  .motion-ready .motion-hero { animation: chrisHeroIn .9s cubic-bezier(.2,.75,.25,1) both; }
+  .motion-ready .motion-hero-visual { animation: chrisFloatIn 1.1s .12s cubic-bezier(.2,.75,.25,1) both; }
+  .glass, .feature-card, .interest-card, .timeline-card, .button, .theme-toggle { transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, background-color .28s ease; }
+  .glass:hover, .feature-card:hover, .interest-card:hover, .timeline-card:hover { transform: translateY(-5px); }
+  .button:hover, .theme-toggle:hover { transform: translateY(-2px); }
+  .site-header { animation: chrisHeaderIn .65s ease both; }
+  .site-footer { transition: opacity .4s ease; }
+}
+@keyframes chrisHeroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes chrisFloatIn { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes chrisHeaderIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
 </head><body><header class="site-header"><nav class="nav-wrap" aria-label="Main navigation"><a class="brand" href="index.html">CHRIS<span>.</span></a><div class="nav-right"><div class="links"><a href="index.html">Home</a><a href="about.html" aria-current="page">About</a><a href="interests.html">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">☼ Dark</button></div></nav></header><main class="wrap inner-page">
 <section class="page-intro"><span class="kicker"><i></i> 01 — THE PERSON</span><h1>A little more<br><em>about me.</em></h1><p class="lead">I’m Chris, a Grade 12 student who enjoys learning, exploring new ideas, and finding ways to turn curiosity into something practical.</p></section>
 <section class="about-layout"><article class="glass story-card"><span class="mini-label">MY STORY</span><h2>Still learning.<br><em>Always becoming.</em></h2><p>I believe learning is a continuous process. Every lesson, challenge, and new experience gives me an opportunity to understand something better and improve step by step.</p><p>I’m interested in technology and the ways digital tools help people communicate, create, and solve problems. Building this portfolio lets me practice those ideas while sharing a little about who I am.</p><p>I try to stay open-minded, do my best in my studies, and become more confident when facing something unfamiliar.</p></article><aside class="glass profile-facts"><span class="mini-label">AT A GLANCE</span><div class="fact-row"><span>01</span><div><small>NAME</small><b>Chris</b></div></div><div class="fact-row"><span>02</span><div><small>LEVEL</small><b>Grade 12 · Senior High School</b></div></div><div class="fact-row"><span>03</span><div><small>FOCUS</small><b>Learning &amp; digital creativity</b></div></div><div class="fact-row"><span>04</span><div><small>THIS PORTFOLIO</small><b>HTML · CSS · GitHub Pages</b></div></div></aside></section>
@@ -40,4 +62,27 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
  targets.forEach(el=>{if(!el.classList.contains('is-visible'))observer.observe(el);});
 })();
 </script>
-</body></html>
+<script id="chris-motion-script">(function(){
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const main = document.querySelector('main');
+  if (!main || !('IntersectionObserver' in window)) return;
+  const candidates = main.querySelectorAll(':scope > section, :scope > .page-header, :scope > .page-intro, :scope > .quote-band, :scope > .page-next, .feature-card, .interest-card, .timeline-item, .takeaway, .profile-facts');
+  candidates.forEach((el, index) => {
+    if (el.closest('.motion-reveal')) return;
+    el.classList.add('motion-reveal');
+    if (el.parentElement && el.parentElement.classList.contains('feature-grid')) el.style.setProperty('--motion-delay', (index % 4) * 90 + 'ms');
+    else if (el.parentElement && el.parentElement.classList.contains('interest-grid')) el.style.setProperty('--motion-delay', (index % 4) * 85 + 'ms');
+    else if (el.parentElement && el.parentElement.classList.contains('timeline')) el.style.setProperty('--motion-delay', (index % 4) * 75 + 'ms');
+  });
+  const hero = main.querySelector('.hero-copy, .page-heading, .page-title');
+  const visual = main.querySelector('.hero-visual, .profile-photo-wrap, .hero-image');
+  if (hero) hero.classList.add('motion-hero');
+  if (visual) visual.classList.add('motion-hero-visual');
+  document.documentElement.classList.add('motion-ready');
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+  }), { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+  candidates.forEach(el => { if (el.classList.contains('motion-reveal')) observer.observe(el); });
+  window.addEventListener('load', () => { if (hero) hero.classList.add('is-visible'); if (visual) visual.classList.add('is-visible'); }, { once: true });
+})();</script></body></html>
