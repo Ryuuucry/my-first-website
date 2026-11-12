@@ -58,7 +58,7 @@ nav{position:relative}
 <body>
   <header><nav class="container" aria-label="Main navigation">
     <a class="brand" href="index.html">CHRIS<span>.</span></a>
-    <div class="links"><a href="about.html">About</a><a href="interests.html">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div>
+    <div class="links"><a href="about.html">About</a><a href="interests.html">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰ Menu</button>
   <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰ Menu</button></nav></header>
   <main>
     <section class="hero container" id="home">
@@ -107,7 +107,7 @@ nav{position:relative}
       <div class="goal"><span class="eyebrow">Looking ahead</span><h2>My Learning Goals</h2>
         <p class="muted">My goal is to keep improving my knowledge, become more comfortable using technology, and create projects that show what I can do. I know that progress takes practice, patience, and a willingness to learn.</p>
         <a class="btn primary" href="index.html">Back to Home ↑</a>
-      </div>
+      </div><figure class="profile-frame"><img class="profile-photo" src="IMG_2886.jpeg" alt="Portrait of Chris"><figcaption class="profile-caption">A little glimpse of me</figcaption></figure></div>
     </section>
   </main>
   <footer><div class="container">© 2026 Chris. Created for a school website activity · Built with HTML &amp; CSS.</div></footer>
@@ -143,5 +143,5 @@ nav{position:relative}
 })();
 </script>
 
-</body>
+<button class="back-top" type="button" aria-label="Back to top">↑</button><script>(function(){const links=document.querySelector(".links"),menu=document.querySelector(".menu-toggle");if(menu&&links){menu.addEventListener("click",()=>{const opened=links.classList.toggle("open");menu.setAttribute("aria-expanded",String(opened));menu.textContent=opened?"Close menu":"☰ Menu"});links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{links.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="☰ Menu"}));}const top=document.querySelector(".back-top");if(top){window.addEventListener("scroll",()=>top.classList.toggle("visible",window.scrollY>350),{passive:true});top.addEventListener("click",()=>window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));}})();</script></body>
 </html>
