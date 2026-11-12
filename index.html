@@ -17,7 +17,7 @@
     nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{font-weight:850;letter-spacing:.08em;text-decoration:none}.brand span{color:var(--blue)}
     .links{display:flex;gap:22px;flex-wrap:wrap}.links a{color:var(--muted);text-decoration:none;font-size:.93rem}.links a:hover{color:white}
-    .hero{min-height:560px;display:flex;align-items:center;padding:80px 0}
+    .hero{min-height:560px;display:flex;align-items:center;padding:80px 0}.hero-layout{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:48px;width:100%}.profile-frame{width:min(100%,340px);justify-self:end;position:relative;padding:7px;border-radius:30px;background:linear-gradient(135deg,#60a5fa,#a78bfa);box-shadow:0 22px 70px rgba(96,165,250,.2)}.profile-photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:24px;background:#141c35}.profile-caption{color:var(--muted);font-size:.82rem;text-align:center;margin:12px 0 0}
     .eyebrow{color:#c7d7ff;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:750}
     h1{font-size:clamp(3.2rem,9vw,6.4rem);line-height:.98;letter-spacing:-.065em;margin:18px 0}
     .gradient{background:linear-gradient(100deg,#60a5fa,#9aa7ff,#a78bfa);background-clip:text;-webkit-background-clip:text;color:transparent}
@@ -36,9 +36,24 @@
     .card h3{margin:0 0 8px}.symbol{font-size:1.5rem;color:#a5b4fc}
     .goal{background:linear-gradient(115deg,rgba(37,99,235,.17),rgba(124,58,237,.17));border:1px solid rgba(147,197,253,.25);border-radius:22px;padding:30px}
     footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);font-size:.9rem}
-    @media(max-width:720px){nav{align-items:flex-start;flex-direction:column;justify-content:center;padding:12px 0}.links{gap:15px}.grid,.cards{grid-template-columns:1fr}.hero{min-height:auto;padding:82px 0 64px}}
+    @media(max-width:720px){nav{align-items:flex-start;flex-direction:column;justify-content:center;padding:12px 0}.links{gap:15px}.grid,.cards{grid-template-columns:1fr}.hero{min-height:auto;padding:82px 0 64px}.hero-layout{grid-template-columns:1fr;gap:34px}.profile-frame{justify-self:start;width:min(78%,310px)}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  </style>
+  
+/* Mobile navigation and accessibility improvements */
+nav{position:relative}
+.menu-toggle{display:none;background:rgba(20,28,53,.9);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:9px 13px;font:inherit;font-weight:700;cursor:pointer}
+.menu-toggle:focus-visible,.links a:focus-visible,.btn:focus-visible,.back-top:focus-visible{outline:3px solid #7dd3fc;outline-offset:3px}
+.back-top{position:fixed;right:18px;bottom:18px;z-index:8;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(20,28,53,.92);color:var(--text);font-size:1.25rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s}
+.back-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+@media(max-width:720px){
+  .menu-toggle{display:block;position:absolute;right:0;top:10px}
+  .links{width:100%;max-height:0;overflow:hidden;display:flex;flex-direction:column;gap:0;transition:max-height .25s ease}
+  .links.open{max-height:260px;padding-top:8px}
+  .links a{padding:9px 0}
+}
+@media(prefers-reduced-motion:reduce){.links,.back-top{transition:none}}
+
+</style>
 </head>
 <body>
   <header><nav class="container" aria-label="Main navigation">
@@ -47,11 +62,11 @@
   </nav></header>
   <main>
     <section class="hero container" id="home">
-      <div><span class="eyebrow">Personal portfolio</span>
+      <div class="hero-layout"><div class="hero-copy"><span class="eyebrow">Personal portfolio</span>
         <h1>Hello, I'm<br><span class="gradient">Chris.</span></h1>
         <p class="intro">Welcome to my personal website. I'm a Grade 12 student who enjoys learning, exploring new ideas, and building skills that can help me grow in school and beyond.</p>
         <a class="btn primary" href="about.html">Get to know me</a><a class="btn" href="reflection.html">My reflection</a>
-      </div>
+      </div><div class="profile-frame"><img class="profile-photo" src="IMG_2886.jpeg" alt="Chris profile photo"><p class="profile-caption">A little glimpse of me</p></div></div>
     </section>
     <section class="container" id="about">
       <span class="eyebrow">A little introduction</span><h2>About Me</h2>
@@ -96,5 +111,37 @@
     </section>
   </main>
   <footer><div class="container">© 2026 Chris. Created for a school website activity · Built with HTML &amp; CSS.</div></footer>
+<button class="back-top" type="button" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  const navLinks=document.querySelector('.links');
+  const menu=document.querySelector('.menu-toggle');
+  if(menu&&navLinks){
+    menu.addEventListener('click',function(){
+      const opened=navLinks.classList.toggle('open');
+      menu.setAttribute('aria-expanded',String(opened));
+      menu.textContent=opened?'Close menu':'☰ Menu';
+    });
+    navLinks.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click',function(){
+        navLinks.classList.remove('open');
+        menu.setAttribute('aria-expanded','false');
+        menu.textContent='☰ Menu';
+      });
+    });
+  }
+  const topButton=document.querySelector('.back-top');
+  if(topButton){
+    window.addEventListener('scroll',function(){
+      topButton.classList.toggle('visible',window.scrollY>350);
+    },{passive:true});
+    topButton.addEventListener('click',function(){
+      window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
