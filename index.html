@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chris's personal portfolio website.">
+  <meta name="theme-color" content="#090d1a">
+  <title>Chris | Personal Portfolio</title>
+  <style>
+    :root{--bg:#090d1a;--panel:#141c35;--text:#f4f6ff;--muted:#aab4d0;--blue:#60a5fa;--purple:#a78bfa;--line:rgba(173,190,255,.16)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 12% 8%,rgba(37,99,235,.2),transparent 34rem),radial-gradient(ellipse at 88% 24%,rgba(124,58,237,.18),transparent 32rem),var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .container{width:min(1060px,calc(100% - 40px));margin:auto}
+    header{position:sticky;top:0;z-index:5;background:rgba(9,13,26,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:850;letter-spacing:.08em;text-decoration:none}.brand span{color:var(--blue)}
+    .links{display:flex;gap:22px;flex-wrap:wrap}.links a{color:var(--muted);text-decoration:none;font-size:.93rem}.links a:hover{color:white}
+    .hero{min-height:560px;display:flex;align-items:center;padding:80px 0}
+    .eyebrow{color:#c7d7ff;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:750}
+    h1{font-size:clamp(3.2rem,9vw,6.4rem);line-height:.98;letter-spacing:-.065em;margin:18px 0}
+    .gradient{background:linear-gradient(100deg,#60a5fa,#9aa7ff,#a78bfa);background-clip:text;-webkit-background-clip:text;color:transparent}
+    .intro{max-width:650px;color:var(--muted);font-size:1.12rem}
+    .btn{display:inline-block;margin:22px 10px 0 0;padding:11px 20px;border-radius:999px;text-decoration:none;font-weight:700;border:1px solid var(--line)}
+    .primary{background:linear-gradient(100deg,#7dd3fc,#c4b5fd);color:#08101f;border:0}
+    section{padding:66px 0;scroll-margin-top:78px}
+    h2{font-size:clamp(2rem,5vw,3rem);line-height:1.1;letter-spacing:-.04em;margin:10px 0}
+    .muted{color:var(--muted);max-width:680px}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .panel,.card{background:rgba(20,28,53,.82);border:1px solid var(--line);border-radius:22px;padding:26px}
+    .panel p,.card p{color:var(--muted)}
+    .facts{display:grid;gap:12px}.fact{padding:16px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.025)}
+    .fact strong{display:block}.fact span{color:var(--muted);font-size:.93rem}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card h3{margin:0 0 8px}.symbol{font-size:1.5rem;color:#a5b4fc}
+    .goal{background:linear-gradient(115deg,rgba(37,99,235,.17),rgba(124,58,237,.17));border:1px solid rgba(147,197,253,.25);border-radius:22px;padding:30px}
+    footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);font-size:.9rem}
+    @media(max-width:720px){nav{align-items:flex-start;flex-direction:column;justify-content:center;padding:12px 0}.links{gap:15px}.grid,.cards{grid-template-columns:1fr}.hero{min-height:auto;padding:82px 0 64px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header><nav class="container" aria-label="Main navigation">
+    <a class="brand" href="#home">CHRIS<span>.</span></a>
+    <div class="links"><a href="#about">About</a><a href="#interests">Interests</a><a href="#goals">Goals</a></div>
+  </nav></header>
+  <main>
+    <section class="hero container" id="home">
+      <div><span class="eyebrow">Personal portfolio</span>
+        <h1>Hello, I'm<br><span class="gradient">Chris.</span></h1>
+        <p class="intro">Welcome to my personal website. I'm a Grade 12 student who enjoys learning, exploring new ideas, and building skills that can help me grow in school and beyond.</p>
+        <a class="btn primary" href="#about">Get to know me</a><a class="btn" href="#goals">My goals</a>
+      </div>
+    </section>
+    <section class="container" id="about">
+      <span class="eyebrow">A little introduction</span><h2>About Me</h2>
+      <p class="muted">A quick introduction to who I am and what matters to me as a student.</p>
+      <div class="grid">
+        <div class="panel">
+          <p>My name is Chris, and I am currently a Grade 12 student. I believe learning is a continuous process, and every new experience is a chance to improve.</p>
+          <p>I am interested in discovering how technology works and how digital tools can be used to share ideas, solve problems, and create useful projects. This website is a way to introduce myself and practice what I have learned about building websites.</p>
+          <p>I try to stay curious, do my best in my studies, and become more confident when learning something new.</p>
+        </div>
+        <div class="facts" aria-label="Quick facts">
+          <div class="fact"><strong>Name</strong><span>Chris</span></div>
+          <div class="fact"><strong>Current level</strong><span>Grade 12 / Senior High School</span></div>
+          <div class="fact"><strong>Project</strong><span>Personal portfolio using HTML and CSS</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="container" id="interests">
+      <span class="eyebrow">What I want to explore</span><h2>Interests &amp; Learning</h2>
+      <p class="muted">These are areas I would like to keep exploring as I learn and develop new skills.</p>
+      <div class="cards">
+        <article class="card"><div class="symbol" aria-hidden="true">⌘</div><h3>Technology &amp; ICT</h3><p>Understanding digital tools, computer systems, and how technology can make everyday tasks easier.</p></article>
+        <article class="card"><div class="symbol" aria-hidden="true">✦</div><h3>Creativity &amp; Design</h3><p>Learning how colors, layouts, and visual ideas can turn information into an engaging experience.</p></article>
+        <article class="card"><div class="symbol" aria-hidden="true">↗</div><h3>Personal Growth</h3><p>Practicing problem-solving, communication, and other skills that can help me improve over time.</p></article>
+      </div>
+    </section>
+    <section class="container" id="goals">
+      <div class="goal"><span class="eyebrow">Looking ahead</span><h2>My Learning Goals</h2>
+        <p class="muted">My goal is to keep improving my knowledge, become more comfortable using technology, and create projects that show what I can do. I know that progress takes practice, patience, and a willingness to learn.</p>
+        <a class="btn primary" href="#home">Back to top ↑</a>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">© 2026 Chris. Created for a school website activity · Built with HTML &amp; CSS.</div></footer>
+</body>
+</html>
