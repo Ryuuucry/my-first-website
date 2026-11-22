@@ -67,36 +67,46 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
 
 
 <style id="chris-portrait-redesign">
-/* Homepage portrait: editorial arch treatment */
-.home-hero{gap:clamp(38px,6vw,82px)}
-.portrait-column{min-height:510px;isolation:isolate}
-.portrait-glow{width:300px;height:390px;opacity:.42;filter:blur(65px)}
-.portrait-arch{width:min(100%,370px);padding:0;border:0;background:transparent;box-shadow:none;transform:rotate(-2deg);overflow:visible}
-.portrait-arch img,.portrait-arch .portrait-fallback{height:470px;object-fit:cover;object-position:center 23%;border-radius:48% 48% 18px 18px;border:1px solid rgba(230,242,255,.55);box-shadow:0 24px 65px rgba(0,0,0,.32),0 0 0 9px rgba(255,255,255,.055);background:linear-gradient(140deg,#244261,#514878)}
-.portrait-arch figcaption{position:absolute;left:18px;right:18px;bottom:17px;z-index:2;padding:30px 15px 13px;border-radius:0 0 13px 13px;background:linear-gradient(transparent,rgba(7,15,29,.82));text-shadow:0 1px 8px rgba(0,0,0,.3)}
-.portrait-arch figcaption span{color:rgba(255,255,255,.75);font-size:.58rem}
-.portrait-arch figcaption b{color:#fff;font-size:.95rem}
-.portrait-column .orbit-one{width:410px;height:480px;border-radius:48% 48% 22px 22px;transform:rotate(7deg);z-index:-1}
-.portrait-column .orbit-two{width:450px;height:520px;border-radius:48% 48% 22px 22px;transform:rotate(-7deg);opacity:.55}
+/* Distinctive editorial photo composition — no standard profile-card frame */
+.home-hero{gap:clamp(42px,7vw,100px);grid-template-columns:1.12fr .88fr}
+.portrait-column{min-height:560px;isolation:isolate;align-self:stretch}
+.portrait-glow{width:270px;height:360px;opacity:.28;filter:blur(78px)}
+.portrait-arch{position:relative;width:min(100%,360px);padding:0;margin:35px 12px 0 0;background:transparent;border:0;border-radius:0;box-shadow:none;transform:rotate(3deg);overflow:visible}
+.portrait-arch:before{content:"";position:absolute;z-index:-1;inset:17px -18px -17px 18px;border:1px solid rgba(168,226,255,.65);transform:rotate(-6deg)}
+.portrait-arch:after{content:"";position:absolute;z-index:-2;inset:-28px 28px 28px -28px;background:linear-gradient(145deg,rgba(168,226,255,.14),rgba(201,186,255,.04));clip-path:polygon(0 0,100% 7%,93% 100%,7% 93%)}
+.portrait-arch img,.portrait-arch .portrait-fallback{height:470px;object-fit:cover;object-position:center 24%;border-radius:2px;clip-path:polygon(5% 0,100% 3%,96% 100%,0 96%,0 7%);border:0;box-shadow:0 28px 65px rgba(0,0,0,.38);background:linear-gradient(140deg,#244261,#514878)}
+.portrait-arch figcaption{position:absolute;left:-18px;bottom:24px;z-index:2;display:grid;gap:4px;min-width:220px;padding:13px 18px;background:#d7edff;color:#13253b;box-shadow:8px 8px 0 rgba(10,20,36,.55);transform:rotate(-3deg)}
+.portrait-arch figcaption span{color:#46617b;font:500 .56rem 'DM Mono',monospace;letter-spacing:.12em}
+.portrait-arch figcaption b{color:#13253b;font-size:.88rem}
+.portrait-index{position:absolute;z-index:-1;top:-63px;right:-48px;color:rgba(201,186,255,.22);font:700 9rem/.9 'DM Mono',monospace;letter-spacing:-.12em}
+.portrait-side-note{position:absolute;right:-37px;top:95px;writing-mode:vertical-rl;transform:rotate(180deg);font:500 .58rem 'DM Mono',monospace;letter-spacing:.16em;color:var(--accent)}
+.portrait-column .orbit-one{width:410px;height:480px;border-radius:0;transform:rotate(8deg);z-index:-3}
+.portrait-column .orbit-two{width:450px;height:520px;border-radius:0;transform:rotate(-8deg);opacity:.38}
 @media(max-width:800px){
- .home-hero{display:flex;flex-direction:column;align-items:stretch;gap:18px;padding:35px 0 65px}
- .portrait-column{order:-1;min-height:420px;width:100%;margin:0 auto}
- .portrait-arch{width:min(78%,320px)}
+ .home-hero{display:flex;flex-direction:column;align-items:stretch;gap:14px;padding:34px 0 65px}
+ .portrait-column{order:-1;min-height:440px;width:100%;margin:0 auto}
+ .portrait-arch{width:min(76%,315px);margin:18px auto 0 8%}
  .portrait-arch img,.portrait-arch .portrait-fallback{height:390px}
+ .portrait-index{font-size:7rem;top:-48px;right:-35px}
+ .portrait-side-note{right:-26px;top:72px}
  .portrait-column .orbit-one{width:340px;height:410px}
  .portrait-column .orbit-two{width:375px;height:445px}
  .hero-copy{order:1}
  .hero-note{margin-top:28px}
 }
 @media(max-width:420px){
- .portrait-column{min-height:390px}
- .portrait-arch{width:min(78%,285px)}
- .portrait-arch img,.portrait-arch .portrait-fallback{height:355px}
- .portrait-arch figcaption{left:12px;right:12px;bottom:13px}
+ .portrait-column{min-height:400px}
+ .portrait-arch{width:min(76%,280px);margin-left:7%}
+ .portrait-arch img,.portrait-arch .portrait-fallback{height:350px}
+ .portrait-arch figcaption{left:-10px;bottom:19px;min-width:200px;padding:11px 14px}
+ .portrait-side-note{right:-23px;font-size:.52rem}
+ .portrait-index{right:-28px;font-size:6rem}
 }
+.light-theme .portrait-arch figcaption{background:#d7edff;color:#13253b}
+@media(prefers-reduced-motion:reduce){.portrait-arch{transform:none}}
 </style>
 </head><body><header class="site-header"><nav class="nav-wrap" aria-label="Main navigation"><a class="brand" href="index.html">VIBE<span>CODED NOTES.</span></a><div class="nav-right"><button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button><div class="links" id="site-navigation"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="interests.html">Interests</a><a href="journey.html">Journey</a><a href="reflection.html">Reflection</a></div><button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">☼ Dark</button></div></nav></header><main class="wrap">
-<section class="hero home-hero"><div class="hero-copy"><span class="kicker"><i></i> GRADE 12 · ICT STUDENT</span><h1>Vibe-coded ideas.<br><em>Made with curiosity.</em></h1><p class="lead">Hi, I’m Chris. I’m learning how technology, design, and ideas come together to create things that are useful and meaningful.</p><div class="actions"><a class="button solid" href="about.html">Get to know me <span>↗</span></a><a class="text-link" href="journey.html">Explore my journey →</a></div><div class="hero-note"><span class="note-line"></span><span>Learning one project at a time.</span></div></div><div class="portrait-column"><div class="portrait-glow"></div><figure class="portrait portrait-arch"><img src="./IMG_2886.jpeg" alt="Chris's profile photo" onerror="this.style.display='none';this.nextElementSibling.hidden=false"><div class="portrait-fallback" hidden>C.</div><figcaption><span>THE PERSON BEHIND THE PIXELS</span><b>Chris · Student &amp; Learner</b></figcaption></figure><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span></div></section>
+<section class="hero home-hero"><div class="hero-copy"><span class="kicker"><i></i> GRADE 12 · ICT STUDENT</span><h1>Vibe-coded ideas.<br><em>Made with curiosity.</em></h1><p class="lead">Hi, I’m Chris. I’m learning how technology, design, and ideas come together to create things that are useful and meaningful.</p><div class="actions"><a class="button solid" href="about.html">Get to know me <span>↗</span></a><a class="text-link" href="journey.html">Explore my journey →</a></div><div class="hero-note"><span class="note-line"></span><span>Learning one project at a time.</span></div></div><div class="portrait-column"><div class="portrait-glow"></div><figure class="portrait portrait-arch"><span class="portrait-index" aria-hidden="true">01</span><span class="portrait-side-note">A WORK IN PROGRESS · 2026</span><img src="./IMG_2886.jpeg" alt="Chris's profile photo" onerror="this.style.display='none';this.nextElementSibling.hidden=false"><div class="portrait-fallback" hidden>C.</div><figcaption><span>THE PERSON BEHIND THE PIXELS</span><b>Chris / Student &amp; Learner</b></figcaption></figure><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span></div></section>
 <section class="intro-strip glass"><div><span class="mini-label">01 / A LITTLE INTRO</span><h2>Building skills.<br><em>Finding my direction.</em></h2></div><p>I believe progress comes from staying curious, trying unfamiliar things, and being willing to improve. This portfolio is a snapshot of what I’m learning and the interests I want to explore further.</p><a class="round-link" href="about.html" aria-label="Read about me">↗</a></section>
 <section class="section-block"><div class="section-heading"><div><span class="mini-label">02 / WHAT I’M INTO</span><h2>Things that<br><em>keep me curious.</em></h2></div><p>A few areas that inspire me to keep learning and creating.</p></div><div class="feature-grid"><a class="feature-card glass" href="interests.html"><span class="feature-index">01</span><span class="feature-icon">⌘</span><h3>Technology &amp; ICT</h3><p>Exploring digital tools and how they can solve everyday problems.</p><span class="card-arrow">Explore ↗</span></a><a class="feature-card glass" href="interests.html"><span class="feature-index">02</span><span class="feature-icon">✳</span><h3>Creative Design</h3><p>Discovering how visual choices shape a clear, engaging experience.</p><span class="card-arrow">Explore ↗</span></a><a class="feature-card glass" href="interests.html"><span class="feature-index">03</span><span class="feature-icon">↗</span><h3>Personal Growth</h3><p>Building confidence through practice, patience, and curiosity.</p><span class="card-arrow">Explore ↗</span></a></div></section>
 <section class="closing glass"><div><span class="mini-label">03 / THE NEXT CHAPTER</span><h2>Every project is<br><em>another starting point.</em></h2><p>I’m looking forward to learning more, experimenting with new ideas, and making better things along the way.</p></div><a class="button solid" href="reflection.html">Read my reflection ↗</a></section>
