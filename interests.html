@@ -104,4 +104,24 @@ body::before{animation:floatGlow 13s ease-in-out infinite;will-change:transform}
 })();
 </script>
 
+
+<style>
+.lofi-dock{position:fixed;right:20px;bottom:20px;z-index:9999;font:12px/1.5 Manrope,system-ui,sans-serif;color:#f2f7ff}
+.lofi-toggle{border:1px solid rgba(190,225,255,.3);border-radius:999px;padding:11px 16px;background:rgba(13,27,48,.92);color:#eaf6ff;box-shadow:0 10px 35px rgba(0,0,0,.28);backdrop-filter:blur(16px);cursor:pointer;font:600 12px Manrope,system-ui,sans-serif}
+.lofi-panel{display:none;width:280px;margin-top:10px;padding:12px;border:1px solid rgba(190,225,255,.2);border-radius:18px;background:rgba(13,27,48,.96);box-shadow:0 15px 45px rgba(0,0,0,.35);backdrop-filter:blur(18px)}
+.lofi-panel.open{display:block}.lofi-panel iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:10px}
+.lofi-meta{margin-top:8px;color:#b9cbe0;font-size:11px}.lofi-meta a{color:#b9e6ff;text-decoration:none}
+@media(max-width:600px){.lofi-dock{right:12px;bottom:12px}.lofi-panel{width:min(280px,calc(100vw - 24px))}}
+</style>
+<div class="lofi-dock" id="lofi-dock">
+  <button class="lofi-toggle" id="lofi-toggle" type="button" aria-expanded="false">♫ Play lofi</button>
+  <div class="lofi-panel" id="lofi-panel">
+    <iframe id="lofi-frame" title="Lo-fi hip-hop music player" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div class="lofi-meta">Blue Boi · LAKEY INSPIRED · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></div>
+  </div>
+</div>
+<script>
+(()=>{const b=document.getElementById('lofi-toggle'),p=document.getElementById('lofi-panel'),f=document.getElementById('lofi-frame');if(!b||!p||!f)return;b.addEventListener('click',()=>{const open=!p.classList.contains('open');p.classList.toggle('open',open);b.setAttribute('aria-expanded',String(open));b.textContent=open?'♫ Hide player':'♫ Play lofi';if(open&&!f.src)f.src='https://www.youtube-nocookie.com/embed/hQT6WMJ-Fco?autoplay=1&rel=0';else if(!open&&f.src){f.src='';}})})();
+</script>
+
 </body></html>
